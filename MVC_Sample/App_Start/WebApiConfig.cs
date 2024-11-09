@@ -16,7 +16,7 @@ namespace MVC_Sample
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
+                routeTemplate: "bk/api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
         }
