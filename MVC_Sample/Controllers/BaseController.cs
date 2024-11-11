@@ -27,7 +27,7 @@ namespace MVC_Sample.Controllers
             _logger.Error(ex, message);
         }
 
-        protected JsonResult<DataResult<T>> Ok<T>(T Body, string message = "Request processed successfully")
+        protected JsonResult<DataResult<T>> Ok<T>(T Body, string message = "success")
         {
             var result = new DataResult<T>
             {
@@ -50,9 +50,9 @@ namespace MVC_Sample.Controllers
             return Json(result);
         }
 
-        protected JsonResult<DataResult> Error<T>(HttpStatusCode statusCode, string message)
+        protected JsonResult<DataResult<T>> Error<T>(T Body, HttpStatusCode statusCode, string message)
         {
-            var result = new DataResult
+            var result = new DataResult<T>
             {
                 StatusCode = statusCode,
                 Status = statusCode.ToString(),

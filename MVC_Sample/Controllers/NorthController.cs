@@ -19,11 +19,20 @@ namespace MVC_Sample.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/values/5
+        // GET bk/api/values/{id}
         [HttpGet]
-        public JsonResult<DataResult<int>> Get(int id)
+        public JsonResult<DataResult<int>> Categories(int id)
         {
-            return Ok(id, "successfull");
+            try
+            {
+                //呼叫service
+                return Ok(id, "成功");
+            }
+            catch (Exception ex)
+            {
+                LogError("發生例外",ex);
+                return Error(id, HttpStatusCode.InternalServerError, "伺服器失敗");
+            }
         }
 
         // POST api/values
@@ -40,7 +49,7 @@ namespace MVC_Sample.Controllers
 
         // DELETE api/values/5
         [HttpDelete]
-        public void Delete(int id)
+        public void Delete([FromUri]int id)
         {
             //return Ok(id, "successfull");
         }
